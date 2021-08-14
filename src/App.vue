@@ -1,29 +1,68 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+    <div id="app" v-bind:class="theme">
+        <select-theme v-on:theme="changeTheme" />
+        <dash-board />
+    </div>
 </template>
 
+
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Vue from 'vue'
+
+import SelectTheme from '@/components/Select-theme.vue'
+import DashBoard   from '@/components/Dash-board.vue'
 
 export default Vue.extend({
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-});
+    name : 'app',
+
+    data() {
+        return {
+            theme : 'dark'
+        }
+    },
+
+    components : {
+        SelectTheme, DashBoard
+    },
+
+    methods : {
+        changeTheme : function (theme : string) {
+            this.theme = theme
+        }
+    }
+
+})
 </script>
 
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+div#app {
+    width: 100vw;
+    height: 100vh;
+
+    transition: background 400ms;
+    padding: 10px;
+}
+
+
+div#app.dark {
+    background: rgb(19, 22, 56);
+    color: rgb(231, 231, 231);
+}
+
+/* div#app-container {
+    max-width: 320px;
+    width: 100%;
+    height: 100%;
+
+    margin: auto;
+} */
+
 </style>

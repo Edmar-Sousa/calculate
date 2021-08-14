@@ -1,5 +1,8 @@
 # calc
 
+<img src="./img.png">
+
+
 ## Project setup
 ```
 npm install
